@@ -4,7 +4,17 @@ var file = __dirname + '/first.json';
 
 var writer1 = require("./writer.js");
 
+var dir11 = "./exporter"
+
+if (!fs.existsSync(dir11)){
+    fs.mkdirSync(dir11);
+}
+
  writer1.mainwriter();
+
+
+
+
 
 
 fs.readFile(file, 'utf8', function (err, data) {
