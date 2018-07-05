@@ -37,31 +37,27 @@ fs.readFile(file, 'utf8', function (err, data) {
 
 // moodle_backup.XML
 
-var date = new Date();
-var backup_date = (Math.floor(date.getTime()/1000));
-var backup_id = "4ec4fa7b768da4bb4123999b83fce898";
-
 var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/moodle_backup.xml');
 ws.on('close', function() {
+   // log output
 });
 xw = new XMLWriter(false, function(string, encoding) {
     ws.write(string, encoding);
 });
-xw.startDocument('1.0', 'UTF-8').startElement(function() {
+xw.startDocument('1.0', 'UTF-8').startElement(function() {   // set encoding and version
   return 'moodle_backup';
-}).startElement('information', ' ').writeElement('name', "moodle_backup_from_json-nu.mbz").writeElement('moodle_version', "2016052312.01").writeElement('moodle_release', "3.1.12+ (Build: 20180524)")
-.writeElement('backup_version', "2016052300").writeElement('backup_release', "3.1").writeElement('backup_date', backup_date).writeElement('mnet_remoteusers', "0").writeElement('include_files', "1")
-.writeElement('include_file_references_to_external_content', "0").writeElement('original_wwwroot', "http://localhost/moodle").writeElement('original_site_identifier_hash', "7d85aaa10bd33c790bf1be8b7fa8ad83")
-.writeElement('original_course_id', "3").writeElement('original_course_format', "weeks").writeElement('original_course_fullname', obj_pulseconfig.data.course.title).writeElement('original_course_shortname', obj_pulseconfig.courseId)
-.writeElement('original_course_startdate', backup_date).writeElement('original_course_context_id', "36").writeElement('original_system_contextid', "2").startElement('details', ' ').startElement('detail', ' ').writeAttribute('backup_id', backup_id)
+}).startElement('information',' ').writeElement("name","backup-moodle2-course-3-cs101-20180625-0537-nu.mbz").writeElement("moodle_version","2016052312.01").writeElement("moodle_release","3.1.12+ (Build: 20180524)")
+.writeElement("backup_version","2016052300").writeElement("backup_release","3.1").writeElement("backup_date","1529901456").writeElement("mnet_remoteusers","0").writeElement("include_files","1")
+.writeElement("include_file_references_to_external_content","0").writeElement("original_wwwroot","http://localhost/moodle").writeElement("original_site_identifier_hash","7d85aaa10bd33c790bf1be8b7fa8ad83").writeElement("original_course_id","3")
+.writeElement("include_file_references_to_external_content","weeks").writeElement("original_course_fullname",obj_pulseconfig.data.course.title).writeElement("original_course_shortname",obj_pulseconfig.courseId)
+.writeElement("original_course_startdate","1529708400").writeElement("original_course_contextid","36").writeElement("original_system_contextid","2").startElement('details', ' ').startElement('detail', ' ').writeAttribute('backup_id', "4ec4fa7b768da4bb4123999b83fce898")
 .writeElement('type', "course").writeElement('format', "moodle2").writeElement('interactive', "1").writeElement('mode', "10").writeElement('execution',"1").writeElement('executiontime', "0").startElement('/detail', ' ').startElement('/details', ' ')
 .startElement('contents', ' ').startElement('activities', ' ')
 for(i=0;i<len-1;i++){
   var x=i+2;
   xw.startElement('activity', ' ').writeElement('moduleid', x).writeElement('sectionid', i+13).writeElement('modulename', "label").writeElement('title', obj_pulseconfig.data.sessions[i].objective).writeElement('directory', "activities/label_" + x).startElement('/activity', ' ')
 }
-xw.startElement('/activities', ' ')
-.startElement('sections', ' ').startElement('section', ' ').writeElement('sectionid', '12').writeElement('title', '0').writeElement('directory', 'sections/section_12').startElement('/section', ' ')
+xw.startElement('/activities', ' ').startElement('sections', ' ').startElement('section', ' ').writeElement('sectionid', '12').writeElement('title', '0').writeElement('directory', 'sections/section_12').startElement('/section', ' ')
 for(i=0;i<len-1;i++){
   var x = i+13;
   xw.startElement('section', ' ').writeElement('sectionid', i+13).writeElement('title', obj_pulseconfig.data.sessions[i].topic).writeElement('directory', 'sections/section_' + x).startElement('/section', ' ')
@@ -93,10 +89,10 @@ for(i=0;i<len-1;i++){
   .startElement('setting', ' ').writeElement('level', "activity").writeElement('activity', "label_" + y).writeElement('name', "label_" + y + "_included").writeElement('value', "1").startElement('/setting', ' ')
   .startElement('setting', ' ').writeElement('level', "activity").writeElement('activity', "label_" + y).writeElement('name', "label_" + y + "_userinfo").writeElement('value', "0").startElement('/setting', ' ')
 }
-xw.startElement('/settings', ' ').startElement('/information', ' ').text(function() {
+xw.startElement('/settings', ' ').startElement('/information',' ').text(function() {
   return ' ';
 });
-xw.endDocument().startElement(function() {
+xw.endDocument().startElement(function() {              // add tags
   return '/moodle_backup>' ;
 });
 ws.end();
