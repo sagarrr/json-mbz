@@ -160,7 +160,7 @@ xw = new XMLWriter(false, function(string, encoding) {
 });
 xw.startDocument('1.0', 'UTF-8').startElement(function() {
   return 'gradebook';
-}).writeElement('attributes', ' ').writeElement('grade_categories', ' ').writeElement('grade_items', ' ').writeElement('grade_letters', ' ').startElement('grade_settings',' ').startElement('grade_setting',' ').writeAttribute('id', ' ').writeElement('name', 'minmaxtouse').writeElement('value', '1').startElement('/grade_setting',' ').startElement('/grade_settings',' ')
+}).writeElement('attributes', ' ').writeElement('grade_categories', ' ').writeElement('grade_items', ' ').writeElement('grade_letters', ' ').startElement('grade_settings',' ').startElement('grade_setting',' ').writeAttribute('id', '').writeElement('name', 'minmaxtouse').writeElement('value', '1').startElement('/grade_setting',' ').startElement('/grade_settings',' ')
 .text(function() {
   return ' ';
 });
