@@ -1,0 +1,28 @@
+{
+  "name": "json-mbz",
+  "version": "1.0.0",
+  "description": "An App to Convert LDSHE to Moodle",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "xml-writer": "^1.7.0"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sagarrr/json-mbz"
+  },
+  "keywords": [
+    "node",
+    "XMLWriter"
+  ],
+  "author": "Sagar Biswas",
+  "contributors": [
+    "Andy Chan"
+  ],
+  "license": "MIT"
+}
