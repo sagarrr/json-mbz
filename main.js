@@ -1,10 +1,10 @@
 var fs = require('fs');
 var XMLWriter = require('xml-writer');
 var file = __dirname + '/first.json';
-
+var compressor = require("./compression.js")
 var writer1 = require("./writer.js");
 
-var dir11 = "./moodle_backup_from_json-nu.mbz"
+var dir11 = "./semi_converted_file"
 
 if (!fs.existsSync(dir11)){
     fs.mkdirSync(dir11);
@@ -25,8 +25,8 @@ fs.readFile(file, 'utf8', function (err, data) {
   // activites label folder maker
 
   for(i=0;i<len;i++){
-    var dir1 = "./moodle_backup_from_json-nu.mbz/activities/label_" + (i+2);
-    var dir2 = "./moodle_backup_from_json-nu.mbz/sections/section_" + (i+12);
+    var dir1 = "./semi_converted_file/activities/label_" + (i+2);
+    var dir2 = "./semi_converted_file/sections/section_" + (i+12);
     if (!fs.existsSync(dir1)){
         fs.mkdirSync(dir1);
     }
@@ -37,7 +37,7 @@ fs.readFile(file, 'utf8', function (err, data) {
 
 // moodle_backup.XML
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/moodle_backup.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/moodle_backup.xml');
 ws.on('close', function() {
    // log output
 });
@@ -63,7 +63,7 @@ for(i=0;i<len-1;i++){
   xw.startElement('section', ' ').writeElement('sectionid', i+13).writeElement('title', obj_pulseconfig.data.sessions[i].topic).writeElement('directory', 'sections/section_' + x).startElement('/section', ' ')
 }
 xw.startElement('/sections', ' ').startElement('course', ' ').writeElement('courseid', "3").writeElement('title', obj_pulseconfig.courseId).writeElement('directory', "course").startElement('/course', ' ').startElement('/contents', ' ')
-.startElement('settings', ' ').startElement('setting', ' ').writeElement('level', "root").writeElement('name', "filename").writeElement('value', "moodle_backup_from_json-nu.mbz").startElement('/setting', ' ')
+.startElement('settings', ' ').startElement('setting', ' ').writeElement('level', "root").writeElement('name', "filename").writeElement('value', "semi_converted_file").startElement('/setting', ' ')
 .startElement('setting', ' ').writeElement('level', "root").writeElement('name', "imscc11").writeElement('value', "0").startElement('/setting', ' ')
 .startElement('setting', ' ').writeElement('level', "root").writeElement('name', "users").writeElement('value', "0").startElement('/setting', ' ')
 .startElement('setting', ' ').writeElement('level', "root").writeElement('name', "anonymize").writeElement('value', "0").startElement('/setting', ' ')
@@ -102,7 +102,7 @@ ws.end();
 // grade_history.xml for every label
 
 for(i=0;i<len;i++){
-  var dir1 = "/moodle_backup_from_json-nu.mbz/activities/label_" + (i+2);
+  var dir1 = "/semi_converted_file/activities/label_" + (i+2);
   var ws = fs.createWriteStream(__dirname +  dir1 + '/grade_history.xml');
   ws.on('close', function() {
   });
@@ -123,7 +123,7 @@ for(i=0;i<len;i++){
 // grades.xml for every label
 
 for(i=0;i<len;i++){
-  var dir1 = "/moodle_backup_from_json-nu.mbz/activities/label_" + (i+2);
+  var dir1 = "/semi_converted_file/activities/label_" + (i+2);
   var ws = fs.createWriteStream(__dirname +  dir1 + '/grades.xml');
   ws.on('close', function() {
   });
@@ -144,7 +144,7 @@ for(i=0;i<len;i++){
 // inforef.xml for every label
 
 for(i=0;i<len;i++){
-  var dir1 = "/moodle_backup_from_json-nu.mbz/activities/label_" + (i+2);
+  var dir1 = "/semi_converted_file/activities/label_" + (i+2);
   var ws = fs.createWriteStream(__dirname +  dir1 + '/inforef.xml');
   ws.on('close', function() {
   });
@@ -165,7 +165,7 @@ for(i=0;i<len;i++){
 // inforef for every section
 
 for(i=0;i<len;i++){
-  var dir1 = "/moodle_backup_from_json-nu.mbz/sections/section_" + (i+12);
+  var dir1 = "/semi_converted_file/sections/section_" + (i+12);
   var ws = fs.createWriteStream(__dirname +  dir1 + '/inforef.xml');
   ws.on('close', function() {
   });
@@ -186,7 +186,7 @@ for(i=0;i<len;i++){
 // roles.xml for every label
 
 for(i=0;i<len;i++){
-  var dir1 = "/moodle_backup_from_json-nu.mbz/activities/label_" + (i+2);
+  var dir1 = "/semi_converted_file/activities/label_" + (i+2);
   var ws = fs.createWriteStream(__dirname +  dir1 + '/roles.xml');
   ws.on('close', function() {
   });
@@ -212,7 +212,7 @@ var timemodified = (Math.floor(date.getTime()/1000));
 shortname = obj_pulseconfig.courseId;
 fullname = obj_pulseconfig.data.course.title;
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/course/course.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/course/course.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -236,8 +236,8 @@ ws.end();
 // Actual parsing of data from the json file and adapting to moodle mbz
 
 for(i=0;i<len-1;i++){
-  var dir1 = "/moodle_backup_from_json-nu.mbz/activities/label_" + (i+2);
-  var dir2 = "/moodle_backup_from_json-nu.mbz/sections/section_" + (i+13);
+  var dir1 = "/semi_converted_file/activities/label_" + (i+2);
+  var dir2 = "/semi_converted_file/sections/section_" + (i+13);
   var date = new Date();
   var timemodified = (Math.floor(date.getTime()/1000));
   var activity_contextid = 43;
@@ -306,7 +306,7 @@ for(i=0;i<len-1;i++){
 
   // singular default first section
 
-  var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/sections/section_12/section.xml');
+  var ws = fs.createWriteStream(__dirname + '/semi_converted_file/sections/section_12/section.xml');
   ws.on('close', function() {
   });
   xw = new XMLWriter(false, function(string, encoding) {
@@ -331,7 +331,7 @@ for(i=0;i<len-1;i++){
 var enrol_id = 4 ;
 var date = new Date();
 var timemodified1 = (Math.floor(date.getTime()/1000));
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/course/enrolments.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/course/enrolments.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -363,3 +363,5 @@ xw.endDocument().startElement(function() {
   return '/enrolments>' ;
 });
 ws.end();
+
+compressor.maincompressor();

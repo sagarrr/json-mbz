@@ -8,9 +8,9 @@ var exports = module.exports = {};
 //directories maker
 
 exports.mainwriter = function(){
-var dir1 = './moodle_backup_from_json-nu.mbz/activities';
-var dir2 = './moodle_backup_from_json-nu.mbz/course';
-var dir3 = './moodle_backup_from_json-nu.mbz/sections';
+var dir1 = './semi_converted_file/activities';
+var dir2 = './semi_converted_file/course';
+var dir3 = './semi_converted_file/sections';
 
 if (!fs.existsSync(dir3)){
     fs.mkdirSync(dir3);
@@ -26,7 +26,7 @@ if (!fs.existsSync(dir1)){
 
 // writer for completion.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/completion.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/completion.xml');
 ws.on('close', function() {
    // log output
 });
@@ -44,7 +44,7 @@ xw.endDocument().startElement(function() {              // add tags
 ws.end();
 
 // writer for files.xml
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/files.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/files.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -62,7 +62,7 @@ ws.end();
 
 //writer for scales.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/scales.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/scales.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -80,7 +80,7 @@ ws.end();
 
 // writer for questions.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/questions.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/questions.xml');
 ws.on('close', function() {
     });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -98,7 +98,7 @@ ws.end();
 
 // writer for outcomes.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/outcomes.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/outcomes.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -116,7 +116,7 @@ ws.end();
 
 // writer for groups.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/groups.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/groups.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -134,7 +134,7 @@ ws.end();
 
 // writer for grade_history.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/grade_history.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/grade_history.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -152,7 +152,7 @@ ws.end();
 
 // writer for gradebook.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/gradebook.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/gradebook.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -171,7 +171,7 @@ ws.end();
 
 // writer for roles.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/roles.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/roles.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -190,14 +190,14 @@ ws.end();
 
 // moodle_backup.txt file empty?
 
-fs.writeFile('./moodle_backup_from_json-nu.mbz/moodle_backup.log','', function (err) {
+fs.writeFile('./semi_converted_file/moodle_backup.log','', function (err) {
   if (err) throw err;
   console.log('Saved!');
 });
 
 // writer for course/inforef.xml
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/course/inforef.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/course/inforef.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
@@ -215,7 +215,7 @@ ws.end();
 
 // writer for course/roles.XMLWriter
 
-var ws = fs.createWriteStream(__dirname + '/moodle_backup_from_json-nu.mbz/course/roles.xml');
+var ws = fs.createWriteStream(__dirname + '/semi_converted_file/course/roles.xml');
 ws.on('close', function() {
 });
 xw = new XMLWriter(false, function(string, encoding) {
