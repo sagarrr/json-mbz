@@ -5,7 +5,7 @@ fs = require('fs');
 
 var exports = module.exports = {};
 
-//directories maker
+//directories maker if does not exist
 
 exports.mainwriter = function(){
 var dir1 = './semi_converted_file/activities';

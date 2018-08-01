@@ -1,3 +1,4 @@
+//requirements
 var fs = require('fs');
 var XMLWriter = require('xml-writer');
 var file = __dirname + '/first.json';
